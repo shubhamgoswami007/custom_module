@@ -1,0 +1,201 @@
+<odoo>
+
+    <record id="view_patient_form" model="ir.ui.view">
+        <field name="name">hospital.patient.form</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_confirm" id="action_confirm" string="Confirm" class="btn-primary"
+                            confirm="are you sure you want to confirm ?" type="object" states="draft"/>
+                    <button name="action_done" id="action_done" string="Mark as Done" class="btn-primary"
+                            type="object" states="confirm" />
+                    <button name="action_draft" id="action_draft" string="set as draft" class="btn-primary"
+                            type="object" states="closed"/>
+                    <button name="action_closed" id="action_closed" string="cancle"
+                            confirm="are you sure you want to cancle ?" type="object" states="draft,confirm,done" />
+
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,confirm,done"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="reference" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="responsible_id"/>
+                            <field name="age"/>
+                        </group>
+                        <group>
+                            <field name="gender"/>
+                            <field name="note"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="appointments_ids" string="Appointments">
+                            <field name="appointment_id"></field>
+                        </page>
+                    </notebook>
+                </sheet>
+                 <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_patient_tree" model="ir.ui.view">
+        <field name="name">hospital.patient.tree</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="responsible_id"/>
+                <field name="age"/>
+                <field name="gender"/>
+                <field name="note"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_patient_kanban" model="ir.ui.view">
+        <field name="name">hospital.patient.kanban</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="id"/>
+                <field name="name"/>
+                <field name="age"/>
+                <field name="gender"/>
+                <field name="note"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_global_click">
+                            <div class="oe_kanaba_details">
+                                <ul>
+                                    <li>
+                                        Name:
+                                        <field name="name"/>
+                                    </li>
+                                    <li>
+                                        Age:
+                                        <field name="age"/>
+                                    </li>
+                                    <li>
+                                        Gender :
+                                        <field name="gender"/>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="view_patient_search" model="ir.ui.view">
+        <field name="name">hospital.patient.search</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
+            <search string="Parameters">
+                <field name="name"/>
+                <field name="gender"/>
+                <field name="note"/>
+                <separator/>
+                <filter name="Male" string="male" domain="[('gender', '=', 'male')]"/>
+                <filter name="Female" string="Female" domain="[('gender', '=', 'female')]"/>
+                <filter name="Others" string="Others" domain="[('gender', '=', 'other')]"/>
+                <group expand="1" string="Group By">
+                    <filter name="Gender" string="gender" domain="[]" context="{'group_by':'gender'}"/>
+                    <filter name="Patient Name" string="Patient Name" domain="[]" context="{'group_by':'name'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_patient_calendar">
+        <field name="name">hospital.patient.calendar</field>
+        <field name="model">hospital.patient</field>
+        <field name="priority" eval="2"/>
+        <field name="arch" type="xml">
+            <calendar date_start="create_date" mode="day">
+                <field name="name"/>
+                <field name="age"/>
+                <field name="gender"/>
+            </calendar>
+        </field>
+    </record>
+
+     <record model="ir.ui.view" id="view_patient_graph">
+        <field name="name">hospital.patient.graph</field>
+        <field name="model">hospital.patient</field>
+        <field name="priority" eval="2"/>
+        <field name="arch" type="xml">
+            <graph>
+                <field name="name"/>
+                <field name="age"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="view_patient_activity" model="ir.ui.view">
+        <field name="name">hospital.patient.activity</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
+            <activity string="patient Orders">
+                <templates>
+                    <div t-name="activity-box">
+                        <div>
+                            <field name="name" display="full"/>
+                        </div>
+                    </div>
+                </templates>
+            </activity>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_patient_pivot">
+        <field name="name">hospital.patient.pivot</field>
+        <field name="model">hospital.patient</field>
+        <field name="priority" eval="2"/>
+        <field name="arch" type="xml">
+            <pivot>
+                <field name="name"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="patient_action" model="ir.actions.act_window">
+        <field name="name">Patients</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hospital.patient</field>
+        <field name="view_mode">tree,kanban,form,calendar,graph,pivot,activity</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first Patients!
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="hospital_root"
+              name="Hospital"
+              sequence="10"/>
+
+    <menuitem id="hospital_patient_root"
+              name="Patient"
+              parent="hospital_root"
+              sequence="10"/>
+
+    <menuitem id="hospital_patient"
+              name="Patient"
+              parent="hospital_patient_root"
+              action="patient_action"
+              sequence="10"/>
+</odoo>
