@@ -17,6 +17,7 @@
     'data': [
         'security/ir.model.access.csv',
         'data/data.xml',
+        'wizard/create_appointment_view.xml',
         'views/patient.xml',
         'views/kids.xml',
         'views/Patient_gender.xml',
