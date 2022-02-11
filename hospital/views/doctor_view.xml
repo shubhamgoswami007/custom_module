@@ -68,7 +68,7 @@
             <form>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        <button name="%(om_hospital.action_open_appointments)d" type="action"
+                        <button name="%(hospital.action_open_appointments)d" type="action"
                                 class="oe_stat_button" icon="fa-calendar">
                             <div class="o_stat_info">
                                 <field name="appointment_count" class="o_stat_value"/>
@@ -131,14 +131,14 @@
         </field>
     </record>
 
-    <menuitem id="menu_doctor_root"
+    <menuitem id="hospital_doctor_root"
               name="Doctors"
-              parent="menu_hospital_root"
-              sequence="10"/>
+              parent="hospital_root"
+              sequence="20"/>
 
-    <menuitem id="menu_doctor"
+    <menuitem id="hospital_doctor"
               name="Doctors"
-              parent="menu_doctor_root"
+              parent="hospital_doctor_root"
               action="action_hospital_doctor"
               sequence="10"/>
 

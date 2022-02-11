@@ -20,6 +20,7 @@
         'wizard/create_appointment_view.xml',
         'views/patient.xml',
         'views/kids.xml',
+        'views/doctor_view.xml',
         'views/Patient_gender.xml',
         'views/Appointment.xml',
         'views/sale.xml'

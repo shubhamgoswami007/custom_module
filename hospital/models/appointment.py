@@ -1,10 +1,13 @@
 from odoo import api, fields, models, _
+from odoo.exceptions import ValidationError
 
 
 class HospitalAppointment(models.Model):
     _name = "hospital.appointment"
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = "Hospital Appointment"
+    _order = "doctor_id,name,age"
+
     name = fields.Char(string='Order Reference', required=True, copy=False, readonly=True, index=True,
                        default=lambda self: _('New'))
     note = fields.Text(string='Description')
@@ -22,6 +25,7 @@ class HospitalAppointment(models.Model):
         ('other', 'other')
     ], string="Gender")
     prescription = fields.Text(string="Doctor Prescription")
+    doctor_id = fields.Many2one('hospital.doctor',string="Doctor Name")
 
     def action_confirm(self):
         self.state = "confirm"
@@ -54,6 +58,11 @@ class HospitalAppointment(models.Model):
         else:
             self.gender = ''
             self.note = ''
+
+    def unlink(self):
+        if self.state == 'done':
+            raise ValidationError(_("You Cannot Delete %s as it is in Done State" % self.name))
+        return super(HospitalAppointment, self).unlink()
 
 
 class AppointmentPrescriptionLine(models.Model):

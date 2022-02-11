@@ -25,13 +25,13 @@
                         </h1>
                     </div>
                     <group>
-                        <group>
+                         <group>
                             <field name="patient_id"/>
+                            <field name="gender" readonly="1" force_save="1"/>
                             <field name="age"/>
-                            <field name="gender"/>
                         </group>
                         <group>
-                            <field name="note"/>
+                            <field name="doctor_id"/>
                             <field name="date_appointment"/>
                             <field name="date_time"/>
                         </group>
@@ -80,10 +80,16 @@
         <field name="name">hospital.appointment.tree</field>
         <field name="model">hospital.appointment</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree multi_edit="1">
                 <field name="name"/>
+                <field name="doctor_id"/>
                 <field name="patient_id"/>
-                <field name="state"/>
+                <field name="age" optional="show"/>
+                <field name="gender" optional="show"/>
+                <field name="date_appointment" optional="hide"/>
+                <field name="date_time" optional="hide"/>
+                <field name="note" optional="show"/>
+                <field name="state" optional="show"/>
             </tree>
         </field>
     </record>
