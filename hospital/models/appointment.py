@@ -64,6 +64,14 @@ class HospitalAppointment(models.Model):
             raise ValidationError(_("You Cannot Delete %s as it is in Done State" % self.name))
         return super(HospitalAppointment, self).unlink()
 
+    def action_url(self):
+        return {
+            'type': 'ir.actions.act_url',
+            'target': 'new',
+            'url': 'https://www.odoo.com/slides'
+        }
+
+
 
 class AppointmentPrescriptionLine(models.Model):
     _name = "appointment.prescription.lines"

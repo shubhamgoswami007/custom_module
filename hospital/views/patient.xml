@@ -19,11 +19,20 @@
                            statusbar_visible="draft,confirm,done"/>
                 </header>
                 <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_open_appointments" type="object" class="oe_stat_button" icon="fa-calendar">
+                            <div class="o_stat_info">
+                                <field name="appointment_count" class="o_stat_value"/>
+                                <span class="o_stat_text">Appointments</span>
+                            </div>
+                        </button>
+                    </div>
                     <div class="oe_title">
                         <h1>
                             <field name="reference" readonly="1"/>
                         </h1>
                     </div>
+                    <field name="image" widget="image" class="oe_avatar"/>
                     <group>
                         <group>
                             <field name="name"/>
@@ -33,6 +42,7 @@
                         <group>
                             <field name="gender"/>
                             <field name="note"/>
+                            <field name="appointment_count"/>
                         </group>
                     </group>
                     <notebook>
@@ -186,16 +196,16 @@
 
     <menuitem id="hospital_root"
               name="Hospital"
-              sequence="10"/>
+              sequence="1"/>
 
     <menuitem id="hospital_patient_root"
               name="Patient"
               parent="hospital_root"
-              sequence="10"/>
+              sequence="1"/>
 
     <menuitem id="hospital_patient"
               name="Patient"
               parent="hospital_patient_root"
               action="patient_action"
-              sequence="10"/>
+              sequence="1"/>
 </odoo>
