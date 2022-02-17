@@ -13,11 +13,7 @@
         </field>
     </record>
 
-    <menuitem id="hospital_Male_Patient"
-              name="Male Patient"
-              parent="hospital_patient_root"
-              action="male_patient_action"
-              sequence="20"/>
+
 
     <record id="female_patient_action" model="ir.actions.act_window">
         <field name="name">Female Patient</field>
@@ -33,9 +29,5 @@
         </field>
     </record>
 
-    <menuitem id="hospital_Female_Patient"
-              name="Female Patient"
-              parent="hospital_patient_root"
-              action="female_patient_action"
-              sequence="20"/>
+
 </odoo>

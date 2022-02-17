@@ -18,14 +18,14 @@ class HospitalAppointment(models.Model):
     patient_id = fields.Many2one('hospital.patient', string="Patient", required=True)
     prescription_line_ids = fields.One2many('appointment.prescription.lines', 'appointment_id', string="Prescription Line")
     date_appointment = fields.Date(string="Date")
-    date_time = fields.Datetime(string="Date Time")
+    date_to = fields.Datetime(string="Check up time")
     gender = fields.Selection([
         ('male', 'Male'),
         ('female', 'Female'),
         ('other', 'other')
     ], string="Gender")
     prescription = fields.Text(string="Doctor Prescription")
-    doctor_id = fields.Many2one('hospital.doctor',string="Doctor Name")
+    doctor_id = fields.Many2one('hospital.doctor', string="Doctor Name")
 
     def action_confirm(self):
         self.state = "confirm"

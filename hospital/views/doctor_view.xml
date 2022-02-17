@@ -131,15 +131,6 @@
         </field>
     </record>
 
-    <menuitem id="hospital_doctor_root"
-              name="Doctors"
-              parent="hospital_root"
-              sequence="20"/>
 
-    <menuitem id="hospital_doctor"
-              name="Doctors"
-              parent="hospital_doctor_root"
-              action="action_hospital_doctor"
-              sequence="10"/>
 
 </odoo>

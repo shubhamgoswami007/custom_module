@@ -43,7 +43,7 @@
                         <group>
                             <field name="doctor_id"/>
                             <field name="date_appointment"/>
-                            <field name="date_time"/>
+                            <field name="date_to"/>
                         </group>
                     </group>
                     <notebook>
@@ -97,7 +97,7 @@
                 <field name="age" optional="show"/>
                 <field name="gender" optional="show"/>
                 <field name="date_appointment" optional="hide"/>
-                <field name="date_time" optional="hide"/>
+                <field name="date_to" optional="hide"/>
                 <field name="note" optional="show"/>
                 <field name="state" optional="show"/>
             </tree>
@@ -131,20 +131,5 @@
         </field>
     </record>
 
-    <menuitem id="hospital_appointment_root"
-              name="Appointments"
-              parent="hospital_root"
-              sequence="20"/>
 
-    <menuitem id="menu_appointment"
-              name="Appointments"
-              parent="hospital_appointment_root"
-              action="action_hospital_appointment"
-              sequence="10"/>
-
-    <menuitem id="menu_create_appointment"
-              name="Create Appointment"
-              parent="hospital_appointment_root"
-              action="action_create_appointment"
-              sequence="20"/>
 </odoo>

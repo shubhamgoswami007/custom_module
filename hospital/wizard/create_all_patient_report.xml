@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="view_create_patient_form" model="ir.ui.view">
+        <field name="name">patient.report.wizard.form</field>
+        <field name="model">patient.report.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Print Appointment">
+                <group>
+                    <group>
+                        <field name="gender"/>
+                    </group>
+                    <group>
+                        <field name="age"/>
+                    </group>
+                </group>
+                <footer>
+                    <button string="print" name="action_print_report" class="btn-primary" type="object"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_create_patients" model="ir.actions.act_window">
+        <field name="name">Print Patient</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">patient.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_create_patient_form"/>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

@@ -29,7 +29,7 @@ class HospitalPatient(models.Model):
                              string="Status", default='draft',tracking=True)
 
     responsible_id = fields.Many2one('res.partner', string="Responsible")
-    appointment_id = fields.One2many('hospital.appointment','patient_id',string="Appointment")
+    appointment_id = fields.One2many('hospital.appointment', 'patient_id',string="Appointment")
     appointment_count = fields.Integer(string='Appointment Count', compute='_compute_appointment_count')
 
     def _compute_appointment_count(self):
