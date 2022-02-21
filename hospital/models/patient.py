@@ -13,23 +13,23 @@ class HospitalPatient(models.Model):
         return res
 
     name = fields.Char(string='Name', required=True, tracking=True)
-    reference = fields.Char(string='Order Reference', required=True, copy=False, readonly=True,index=True,
+    reference = fields.Char(string='Order Reference', required=True, copy=False, readonly=True, index=True,
                             default=lambda self: _('New'))
-    age = fields.Integer(string='Age',tracking=True)
+    age = fields.Integer(string='Age', tracking=True)
     image = fields.Binary(string="Patient Image")
     gender = fields.Selection([
         ('male', 'Male'),
         ('female', 'Female'),
         ('other', 'other'),
         ('kid', 'Kid')
-    ], required=True, default='other',tracking=True)
+    ], required=True, default='other', tracking=True)
     note = fields.Text(string='Description')
     state = fields.Selection([('draft', "draft"),
                               ('confirm', "Confirm"), ('done', "Done"), ('closed', "Closed")],
-                             string="Status", default='draft',tracking=True)
+                             string="Status", default='draft', tracking=True)
 
     responsible_id = fields.Many2one('res.partner', string="Responsible")
-    appointment_id = fields.One2many('hospital.appointment', 'patient_id',string="Appointment")
+    appointment_id = fields.One2many('hospital.appointment', 'patient_id', string="Appointment")
     appointment_count = fields.Integer(string='Appointment Count', compute='_compute_appointment_count')
 
     def _compute_appointment_count(self):

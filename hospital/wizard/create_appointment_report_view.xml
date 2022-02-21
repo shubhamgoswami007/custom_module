@@ -15,14 +15,15 @@
                     </group>
                 </group>
                 <footer>
-                    <button string="print" name="action_print_report" class="btn-primary" type="object"/>
+                    <button string="print PDf" name="action_print_report" class="btn-primary" type="object"/>
+                    <button string="Print Excel" name="action_print_excel_report" class="btn-primary" type="object"/>
                     <button string="Cancel" class="btn-secondary" special="cancel"/>
                 </footer>
             </form>
         </field>
     </record>
 
-    <record id="action_create_appointment" model="ir.actions.act_window">
+    <record id="action_print_appointment" model="ir.actions.act_window">
         <field name="name">Print Appointment</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">appointment.report.wizard</field>

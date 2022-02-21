@@ -59,7 +59,7 @@
     <menuitem id="menu_create_appointment"
               name="Create Appointment"
               parent="hospital_appointment_root"
-              action="action_create_appointment"
+              action="create_appointment"
               sequence="2"/>
 
     <!--    Wizard Menu-->
@@ -71,7 +71,7 @@
     <menuitem id="report_appointment"
               name="Appointment"
               parent="menu_reporting"
-              action="action_create_appointment"
+              action="action_print_appointment"
               sequence="1"/>
 
     <menuitem id="report_patient"
